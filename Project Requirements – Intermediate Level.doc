@@ -1,0 +1,93 @@
+Project Requirements – Intermediate Level
+
+1. 📄 Core Functionality
+Feature
+Description
+Document Upload
+User uploads a file (PDF/image/doc).
+Hash Generation
+Generate a SHA-256 hash of the file.
+Store Document on IPFS
+Upload file to IPFS, get back CID (Content Identifier).
+Store Metadata on Blockchain
+Save the file hash + IPFS CID + timestamp in a smart contract.
+Verify Document
+Users can re-upload a file to check if its hash matches one on-chain.
+
+
+2. 🔐 Roles
+Role
+Permissions
+Issuer
+Upload and verify documents.
+Verifier
+Only check document validity.
+(Viewer is optional in intermediate version)
+
+
+
+
+3. 🧱 System Components
+Component
+Purpose
+Frontend (React + Tailwind)
+UI for document upload, hash display, verification, and blockchain interaction.
+Blockchain (Ethereum testnet)
+Host smart contracts to store & retrieve document metadata.
+Smart Contracts (Solidity)
+Manage hash storage, user roles, and verification.
+IPFS (via Infura or Pinata)
+Store full documents off-chain, return unique CID.
+Ethers.js
+Connect frontend with deployed contracts.
+MetaMask
+User wallet for signing transactions.
+
+
+4. 🧪 Smart Contract Design
+uploadDocument(bytes32 hash, string memory ipfsCid) – only Issuer can call.
+
+
+verifyDocument(bytes32 hash) – returns IPFS CID + timestamp.
+
+
+addIssuer(address) – owner only.
+
+
+addVerifier(address) – owner only.
+
+
+isVerified(bytes32) – check if a document hash exists.
+
+
+
+5. 🖼️ Frontend Pages
+Page/Section
+Description
+Home
+Intro + description
+Upload Document
+Form for Issuer to upload and register
+Verify Document
+Form to verify a document
+Connect Wallet
+MetaMask integration
+Dashboard (optional)
+List of uploaded/verified docs (if desired)
+
+
+6. 🛠️ Tools and Services
+Tool / Service
+Purpose
+MetaMask
+Wallet for transactions
+Hardhat
+Smart contract development and local testing
+Infura / Pinata
+Free IPFS hosting
+Ethers.js
+Web3 integration
+React + Tailwind
+UI development
+
+
