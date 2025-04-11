@@ -70,3 +70,5 @@ project-root/
 Create a .env file:
 REACT_APP_PINATA_JWT=your-pinata-jwt-token
 
+API KEY: https://app.pinata.cloud/developers/api-keys
+MetaMask: https://developer.metamask.io/
