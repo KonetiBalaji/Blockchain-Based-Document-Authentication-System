@@ -1,0 +1,26 @@
+{
+  "name": "block-chain-based-document-verificatiuon-system",
+  "version": "1.0.0",
+  "main": "hardhat.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KonetiBalaji/Blockchain-Based-Document-Authentication-System.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KonetiBalaji/Blockchain-Based-Document-Authentication-System/issues"
+  },
+  "homepage": "https://github.com/KonetiBalaji/Blockchain-Based-Document-Authentication-System#readme",
+  "description": "",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "ethers": "^5.8.0",
+    "hardhat": "^2.23.0"
+  }
+}
