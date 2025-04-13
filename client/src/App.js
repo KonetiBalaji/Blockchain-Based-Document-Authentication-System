@@ -6,7 +6,8 @@ import { ethers } from "ethers";
 import { sha256 } from "js-sha256";
 import VerifyDocument from "./components/VerifyDocument";
 import HistoryView from "./components/HistoryView";
-
+import PdfPreview from "./components/PdfPreview";
+import "./App.css";
 
 
 function App() {
@@ -56,29 +57,25 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-100 font-sans">
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-center mb-6 text-blue-800">
+    <div className="min-h-screen bg-gradient-to-b from-white to-blue-50 font-sans py-8 px-4">
+      <div className="max-w-5xl mx-auto">
+        <h1 className="text-4xl font-bold text-center text-blue-800 mb-8">
           📄 Blockchain Document Verifier
         </h1>
   
-        {/* Role Toggle */}
-        <div className="flex justify-center mb-6 gap-4">
+        {/* Toggle View */}
+        <div className="flex justify-center gap-4 mb-6">
           <button
-            className={`px-4 py-2 rounded-lg shadow-md font-semibold ${
-              role === "issuer"
-                ? "bg-blue-600 text-white"
-                : "bg-white border border-blue-600 text-blue-600"
+            className={`px-4 py-2 rounded-lg font-medium shadow ${
+              role === "issuer" ? "bg-blue-600 text-white" : "bg-white border border-blue-600 text-blue-600"
             }`}
             onClick={() => setRole("issuer")}
           >
             Issuer View
           </button>
           <button
-            className={`px-4 py-2 rounded-lg shadow-md font-semibold ${
-              role === "verifier"
-                ? "bg-blue-600 text-white"
-                : "bg-white border border-blue-600 text-blue-600"
+            className={`px-4 py-2 rounded-lg font-medium shadow ${
+              role === "verifier" ? "bg-blue-600 text-white" : "bg-white border border-blue-600 text-blue-600"
             }`}
             onClick={() => setRole("verifier")}
           >
@@ -87,9 +84,9 @@ function App() {
         </div>
   
         {/* Wallet Info */}
-        <div className="text-center mb-4">
+        <div className="text-center mb-6 text-sm text-gray-700">
           {address ? (
-            <p className="text-green-700 text-sm">
+            <p>
               🔐 Connected Wallet: <span className="font-semibold">{address}</span>
             </p>
           ) : (
@@ -97,43 +94,41 @@ function App() {
           )}
         </div>
   
-        {/* Upload Section (Issuer only) */}
+        {/* Upload Section */}
         {role === "issuer" && isIssuer && (
-          <div className="bg-white p-6 rounded-lg shadow mb-6">
-            <h2 className="text-xl font-semibold text-left mb-4 text-blue-700">📤 Upload Document</h2>
-            <input
-              type="file"
-              onChange={handleFileChange}
-              className="mb-4 p-2 border rounded w-full"
-            />
+          <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
+            <h2 className="text-xl font-semibold text-blue-700 mb-4">📤 Upload Document</h2>
+            <input type="file" onChange={handleFileChange} className="mb-4 p-2 border rounded w-full" />
             <button
               onClick={handleUpload}
               className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
             >
               Upload & Verify
             </button>
-  
             {status && (
-              <div className="mt-4 bg-gray-50 p-3 border rounded text-sm whitespace-pre-wrap">
+              <div className="mt-4 text-sm bg-gray-50 border p-3 rounded whitespace-pre-wrap">
                 {status}
               </div>
             )}
           </div>
         )}
   
-      
+        {/* IPFS Preview */}
+        {ipfsUrl && file?.name?.endsWith(".pdf") && <PdfPreview ipfsUrl={ipfsUrl} />}
   
-        {/* History (Issuer only) */}
+        {/* Upload History */}
         {role === "issuer" && isIssuer && provider && address && (
-          <HistoryView provider={provider} address={address} />
+          <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
+            <HistoryView provider={provider} address={address} />
+          </div>
         )}
   
         {/* Verifier */}
-        <div className="mt-6">
+        <div className="bg-white shadow-lg rounded-lg p-6 mb-6">
           <VerifyDocument signer={signer} />
         </div>
       </div>
     </div>
-  )
+  );
 }
-export default App;
+export default App;  
