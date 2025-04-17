@@ -13,7 +13,7 @@ A decentralized application (dApp) to securely upload, store, and verify documen
 - 📚 Maintains upload history (per wallet)
 - 🔄 Multi-role access: Issuers & Verifiers
 - 🖼️ PDF preview using `pdf.js`
-- 📱 IPFS QR code generation for quick access
+
 
 ---
 
@@ -32,7 +32,7 @@ A decentralized application (dApp) to securely upload, store, and verify documen
 ## 🛠️ Installation
 
 ```bash
-git clone https://github.com/your-username/blockchain-doc-verifier.git
+git clone https://github.com/KonetiBalaji/Blockchain-Based-Document-Authentication-System.git
 cd blockchain-doc-verifier
 npm install
 
